@@ -4,7 +4,6 @@
  */
 package com.miproyecto.modelo;
 
-import com.miproyecto.modelo.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
