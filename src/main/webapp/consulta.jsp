@@ -1,9 +1,3 @@
-<%-- 
-    Document   : consulta
-    Created on : 2/05/2025, 8:50:36 a. m.
-    Author     : SENA
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="com.miproyecto.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,31 +6,159 @@
 <head>
     <meta charset="UTF-8">
     <title>Consulta de Usuarios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
-        h1, h2 { color: #333; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-group input { width: 70%; padding: 8px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
-        .btn { padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; }
-        .btn:hover { background-color: #45a049; }
-        .menu { margin: 20px 0; }
-        .menu a { color: #4CAF50; text-decoration: none; }
-        .menu a:hover { text-decoration: underline; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .results { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 4px; }
-        .not-found { color: #721c24; background-color: #f8d7da; padding: 10px; border-radius: 4px; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #4facfe;
+            padding-bottom: 5px;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            flex: 1 1 100%;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .form-group input {
+            flex: 1 1 auto;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-right: 10px;
+            transition: box-shadow 0.3s;
+        }
+        .form-group input:focus {
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+            outline: none;
+        }
+        .btn {
+            padding: 12px 25px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(79,172,254,0.4);
+        }
+        .menu {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .menu a {
+            color: #4facfe;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .menu a:hover {
+            color: #00f2fe;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f7ff;
+        }
+        .results, .not-found {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .results {
+            background-color: #f5faff;
+            border: 1px solid #4facfe;
+        }
+        .not-found {
+            background-color: #ffe6e6;
+            border: 1px solid #ff4d4d;
+            color: #a94442;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .form-group {
+                flex-direction: column;
+            }
+            .form-group input, .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            tr {
+                margin-bottom: 15px;
+                background: #f9f9f9;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                padding: 10px;
+            }
+            th {
+                display: none;
+            }
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border: none;
+                border-bottom: 1px solid #ddd;
+            }
+            td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                color: #4facfe;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Consulta de Usuarios</h1>
         
-        <%-- Formulario de búsqueda que usa método GET --%>
         <form action="consulta" method="GET">
             <div class="form-group">
                 <label for="email">Buscar usuario por email:</label>
@@ -45,11 +167,9 @@
             </div>
         </form>
         
-        <%-- Resultados de la búsqueda --%>
         <% if (request.getAttribute("busquedaRealizada") != null) { %>
             <div class="results">
                 <h2>Resultado de la búsqueda</h2>
-                
                 <% if (request.getAttribute("usuarioBuscado") != null) { %>
                     <% Usuario usuario = (Usuario) request.getAttribute("usuarioBuscado"); %>
                     <table>
@@ -59,9 +179,9 @@
                             <th>Email</th>
                         </tr>
                         <tr>
-                            <td><%= usuario.getNombre() %></td>
-                            <td><%= usuario.getApellido() %></td>
-                            <td><%= usuario.getEmail() %></td>
+                            <td data-label="Nombre"><%= usuario.getNombre() %></td>
+                            <td data-label="Apellido"><%= usuario.getApellido() %></td>
+                            <td data-label="Email"><%= usuario.getEmail() %></td>
                         </tr>
                     </table>
                 <% } else { %>
@@ -72,9 +192,7 @@
             </div>
         <% } %>
         
-        <%-- Lista de todos los usuarios --%>
         <h2>Lista de Usuarios Registrados</h2>
-        
         <% 
             List<Usuario> listaUsuarios = (List<Usuario>) session.getAttribute("listaUsuarios");
             if (listaUsuarios != null && !listaUsuarios.isEmpty()) {
@@ -87,9 +205,9 @@
                 </tr>
                 <% for (Usuario usuario : listaUsuarios) { %>
                     <tr>
-                        <td><%= usuario.getNombre() %></td>
-                        <td><%= usuario.getApellido() %></td>
-                        <td><%= usuario.getEmail() %></td>
+                        <td data-label="Nombre"><%= usuario.getNombre() %></td>
+                        <td data-label="Apellido"><%= usuario.getApellido() %></td>
+                        <td data-label="Email"><%= usuario.getEmail() %></td>
                     </tr>
                 <% } %>
             </table>
@@ -104,3 +222,4 @@
     </div>
 </body>
 </html>
+
