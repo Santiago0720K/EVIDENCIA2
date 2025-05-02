@@ -1,22 +1,90 @@
-<%-- 
-    Document   : index
-    Created on : 2/05/2025, 8:32:13 a. m.
-    Author     : SENA
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Registro de Usuarios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
-        h1 { color: #333; }
-        .container { max-width: 800px; margin: 0 auto; }
-        .menu { display: flex; gap: 20px; margin: 20px 0; }
-        .menu a { padding: 10px 15px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px; }
-        .menu a:hover { background-color: #45a049; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f0f4f8, #d9e4f5);
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #4facfe;
+            padding-bottom: 5px;
+        }
+        p {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .menu a {
+            padding: 12px 25px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .menu a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(79,172,254,0.4);
+        }
+        hr {
+            margin: 40px 0;
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 2px;
+        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -44,4 +112,4 @@
         </p>
     </div>
 </body>
-</html>"
+</html>
